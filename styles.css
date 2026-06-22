@@ -436,11 +436,11 @@ ul { list-style: none; }
 ═════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: min(80vh, 660px);
+  min-height: min(60vh, 520px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--px) var(--px) clamp(40px, 8vw, 72px);
+  justify-content: center;
+  padding: clamp(40px, 8vw, 72px) var(--px);
   overflow: hidden;
 }
 
