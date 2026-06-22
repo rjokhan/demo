@@ -27,6 +27,9 @@ const PHOTOS = {
   3: 'media/cover-3.jpg',
   4: 'media/cover-4.jpg',
   5: 'media/cover-5.jpg',
+  6: 'media/cover-5.jpg',
+  7: 'media/cover-5.jpg',
+  8: 'media/cover-5.jpg',
 };
 
 const CARD_GRADIENTS = {
@@ -83,7 +86,15 @@ const LESSONS = [
     video: '', locked: true, points: [],
   },
   {
-    id: 6, num: 'Bonus', title: "BALANS\nTO'LIQ\nKOMPLEKS", sub: '170 ta dars',
+    id: 6, num: 'Dars 6', title: "AYOL VA\nNETWORKING", sub: "To'liq kursda",
+    video: '', locked: true, points: [],
+  },
+  {
+    id: 7, num: 'Dars 7', title: "GO'ZAL VA\nSOG'LOM\nAYOL", sub: "To'liq kursda",
+    video: '', locked: true, points: [],
+  },
+  {
+    id: 8, num: 'Bonus', title: "BALANS\nTO'LIQ\nKOMPLEKS", sub: '170 ta dars',
     video: '', locked: true, points: [],
   },
 ];
