@@ -401,6 +401,12 @@ ul { list-style: none; }
   align-items: center;
   gap: 10px;
 }
+.brand__logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 10px;
+}
 .brand__mark {
   width: 36px;
   height: 36px;
