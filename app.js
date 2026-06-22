@@ -100,6 +100,42 @@ const LESSONS = [
 ];
 
 // ═══════════════════════
+//  OFFER TIMER (36h)
+// ═══════════════════════
+const OFFER_DURATION = 36 * 60 * 60 * 1000;
+if (!localStorage.getItem('qpb_offer_start')) {
+  localStorage.setItem('qpb_offer_start', Date.now());
+}
+const offerStart = parseInt(localStorage.getItem('qpb_offer_start'));
+let offerExpired = Date.now() - offerStart >= OFFER_DURATION;
+
+const countdownEl = document.getElementById('offerCountdown');
+
+function updateOfferCountdown() {
+  const remaining = OFFER_DURATION - (Date.now() - offerStart);
+  if (remaining <= 0) {
+    if (!offerExpired) {
+      offerExpired = true;
+      render();
+    }
+    if (countdownEl) countdownEl.textContent = '00:00:00';
+    return;
+  }
+  const h  = Math.floor(remaining / 3_600_000);
+  const m  = Math.floor((remaining % 3_600_000) / 60_000);
+  const s  = Math.floor((remaining % 60_000) / 1000);
+  if (countdownEl) {
+    countdownEl.textContent =
+      String(h).padStart(2, '0') + ':' +
+      String(m).padStart(2, '0') + ':' +
+      String(s).padStart(2, '0');
+  }
+}
+
+updateOfferCountdown();
+setInterval(updateOfferCountdown, 1000);
+
+// ═══════════════════════
 //  STATE
 // ═══════════════════════
 const _savedUser  = JSON.parse(localStorage.getItem('qpb_user') || 'null');
@@ -370,7 +406,7 @@ function render() {
 
   document.getElementById('grid').innerHTML = LESSONS.map(l => {
     const isWatched = watched.has(l.id);
-    const isLocked  = !!l.locked;
+    const isLocked  = !!l.locked || offerExpired;
     const isBlocked = !isLocked && l.id > maxUnlocked + 1;
     const isPlaying = l.id === currentId;
 
@@ -458,7 +494,7 @@ function cardClick(id) {
   const l = LESSONS.find(x => x.id === id);
   if (!l) return;
 
-  if (l.locked) {
+  if (l.locked || offerExpired) {
     hook({ event: 'locked_click', formname: 'popup3_locked_trigger', ...user });
     openPop('popLock');
     return;
