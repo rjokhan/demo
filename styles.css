@@ -385,6 +385,7 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 200;
+  margin-top: -1px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -447,19 +448,55 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url('media/hero.jpg') center center / cover no-repeat;
-  transform: scale(1.04);
-  transition: transform 8s ease;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(236,72,153,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 60%, rgba(139,92,246,.18) 0%, transparent 60%),
+    linear-gradient(135deg, #0d0816 0%, #110a20 40%, #0c0f1e 100%);
+  animation: heroBg 8s ease-in-out infinite alternate;
 }
-.hero:hover .hero__media { transform: scale(1); }
+@keyframes heroBg {
+  0%   { filter: hue-rotate(0deg) brightness(1); }
+  50%  { filter: hue-rotate(15deg) brightness(1.08); }
+  100% { filter: hue-rotate(-10deg) brightness(1.04); }
+}
+
+/* Floating orbs */
+.hero__media::before,
+.hero__media::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: orbFloat 10s ease-in-out infinite alternate;
+}
+.hero__media::before {
+  width: 400px; height: 400px;
+  top: -80px; right: 10%;
+  background: radial-gradient(circle, rgba(236,72,153,.35) 0%, transparent 70%);
+  animation-duration: 10s;
+}
+.hero__media::after {
+  width: 300px; height: 300px;
+  bottom: 0; left: 5%;
+  background: radial-gradient(circle, rgba(139,92,246,.3) 0%, transparent 70%);
+  animation-duration: 13s;
+  animation-direction: alternate-reverse;
+}
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(30px, -20px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(.95); }
+}
+
+.hero:hover .hero__media { filter: brightness(1.05); }
 
 .hero__shade {
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(to top, rgba(8,9,16,1) 0%, rgba(8,9,16,.6) 40%, rgba(8,9,16,.1) 100%),
-    linear-gradient(to right, rgba(8,9,16,.6) 0%, transparent 60%);
+    linear-gradient(to top, rgba(8,9,16,1) 0%, rgba(8,9,16,.5) 50%, rgba(8,9,16,.1) 100%),
+    linear-gradient(to right, rgba(8,9,16,.5) 0%, transparent 70%);
 }
 
 .hero__content {
