@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "Bash(ls \"C:\\\\Users\\\\Administrator\\\\.claude\\\\skills\\\\ui-ux-pro-max\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(ls \"C:\\\\Users\\\\Administrator\\\\OneDrive\\\\Desktop\\\\claude\\\\\" | grep app.js)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(cd \"C:\\\\Users\\\\Sevimli TV 2\\\\Desktop\\\\claude\" && rm -rf .git && git init && git add . && git commit -m \"init\" && git branch -M main && git remote add origin git@github.com:rjokhan/demo.git && git push -u origin main --force)"
+    ]
+  }
+}

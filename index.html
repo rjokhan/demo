@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="theme-color" content="#080910"/>
+  <title>Qizil Pomada — Balans Kompleks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ── PAGE BACKGROUND ── -->
+<div class="page-bg" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     POPUPS
+════════════════════════════════════════ -->
+
+<!-- Popup 1: Registration -->
+<div class="popup popup--hidden" id="popPhone" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+  <div class="popup__card">
+    <div class="popup__shine" aria-hidden="true"></div>
+
+    <div class="popup__form-state" id="popPhoneForm">
+      <div class="popup__icon">🌹</div>
+      <p class="eyebrow" style="text-align:center;margin-bottom:8px">Bepul demo · shaxsiy kirish</p>
+      <h2 class="popup__title" id="regTitle">Demo darsga kirish</h2>
+      <p class="popup__text">Ismingiz bilan shaxsiy hisobingiz yaratiladi va <strong>4 ta demo darsga</strong> darhol kirish ochasiz</p>
+
+      <div class="trust-row" aria-label="Ishonch ko'rsatkichlari">
+        <div><strong>1000+</strong><span>Ayol</span></div>
+        <div><strong>4</strong><span>Bepul dars</span></div>
+        <div><strong>35+</strong><span>Ekspert</span></div>
+      </div>
+
+      <form class="lead-form" id="phoneForm" novalidate>
+        <label>
+          <span>Ismingiz</span>
+          <input class="field" type="text" name="name" placeholder="Masalan: Dilnoza" autocomplete="given-name" required/>
+        </label>
+        <label>
+          <span>Telefon raqamingiz</span>
+          <input class="field" type="tel" name="phone" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel" required/>
+        </label>
+        <p class="form-error" id="phoneError" aria-live="polite"></p>
+        <button class="primary-btn" type="submit">Hisobni yaratish va darsni ko'rish →</button>
+      </form>
+      <p class="microcopy" style="text-align:center;margin-top:10px">Ro'yxatdan o'tish orqali siz demo materiallarga kirish huquqiga ega bo'lasiz</p>
+    </div>
+
+    <div class="popup__success-state" id="popPhoneGreeting" aria-live="polite">
+      <div class="popup__icon popup__icon--ok">✓</div>
+      <p class="eyebrow" style="text-align:center;margin-bottom:8px">Demo kirish faollashdi</p>
+      <h2 class="popup__title"><span id="popHiName">SALOM!</span></h2>
+      <p class="popup__text">Shaxsiy sessiyangiz tayyor. <strong>Darsni boshlashingiz mumkin!</strong></p>
+      <button class="primary-btn" type="button" id="startAfterGreeting">Darsni boshlash →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Popup 2: Sales (before lesson 4) -->
+<div class="popup popup--hidden" id="popSales" role="dialog" aria-modal="true" aria-labelledby="salesTitle">
+  <div class="popup__card popup__card--premium">
+    <button class="icon-btn popup__close" type="button" id="salesClose" aria-label="Yopish">×</button>
+    <div class="popup__shine" aria-hidden="true"></div>
+    <div class="popup__icon">🔥</div>
+    <p class="eyebrow" style="text-align:center;margin-bottom:8px">Oxirgi bepul dars</p>
+    <h2 class="popup__title" id="salesTitle">Siz 4-darsga yetdingiz!</h2>
+    <p class="popup__text">Bu <strong>so'nggi bepul dars</strong>. Undan oldin — <span class="accent-text">1 ta kurs xarid → 5 ta kurs sovg'a!</span> 170 ta dars, bir umrlik kirish.</p>
+    <button class="primary-btn" type="button" id="salesToPitch">To'liq kursni ko'rish → 2 200 000 so'm</button>
+    <button class="ghost-btn" type="button" id="salesSkip" style="margin-top:10px">Yo'q, avval 4-darsni ko'raman</button>
+  </div>
+</div>
+
+<!-- Popup 3: Locked -->
+<div class="popup popup--hidden" id="popLock" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+  <div class="popup__card">
+    <button class="icon-btn popup__close" type="button" id="lockClose" aria-label="Yopish">×</button>
+    <div class="popup__shine" aria-hidden="true"></div>
+    <div class="popup__icon">🔒</div>
+    <p class="eyebrow" style="text-align:center;margin-bottom:8px">To'liq kurs</p>
+    <h2 class="popup__title" id="lockTitle">Bu dars to'liq kursda</h2>
+    <p class="popup__text"><strong>1 ta kurs xarid qiling</strong> — <span class="accent-text">5 ta kurs sovg'a!</span><br>170 ta dars · Bir umrlik kirish.</p>
+    <button class="primary-btn" type="button" id="lockToPitch">Kursni xarid qilish →</button>
+
+    <form class="lead-form lead-form--compact" id="lockForm" novalidate>
+      <p class="microcopy" style="text-align:center;margin-bottom:12px">Yoki maslahat uchun raqamingizni qoldiring:</p>
+      <label>
+        <span>Ismingiz</span>
+        <input class="field" type="text" name="name" id="lockName" placeholder="Ismingiz" autocomplete="given-name"/>
+      </label>
+      <label>
+        <span>Telefon</span>
+        <input class="field" type="tel" name="phone" id="lockPhone" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel"/>
+      </label>
+      <p class="form-error" id="lockError" aria-live="polite"></p>
+      <button class="secondary-btn" type="submit">Murojaat qilish</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     APP
+════════════════════════════════════════ -->
+<div class="app">
+
+  <!-- ── OFFER STRIP ── -->
+  <div class="offer-strip">
+    <div class="offer-strip__main">
+      <span class="offer-strip__tag">Aksiya</span>
+      <span><strong>1 ta kurs xarid</strong> — qolgan <strong>5 ta kurs bepul!</strong> · 170 ta dars · 35+ ekspert</span>
+    </div>
+    <div class="offer-strip__timer">
+      <span class="offer-strip__dot" aria-hidden="true"></span>
+      <span>Demo:</span>
+      <span class="offer-strip__time" id="sessionTime">00:00</span>
+    </div>
+  </div>
+
+  <!-- ── TOPBAR ── -->
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Qizil Pomada Balans">
+      <span class="brand__mark">QP</span>
+      <span class="brand__text">Balans</span>
+    </a>
+    <button class="topbar__cta primary-btn" type="button" id="topJoinBtn">Kursga qo'shilish</button>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="top" aria-label="Balans Kompleks">
+    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__shade" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__meta" aria-label="Kurs haqida">
+        <span>Qizil Pomada</span>
+        <span>6 oylik loyiha</span>
+        <span>35+ ekspert</span>
+      </div>
+      <h1 class="hero__title">Balans<br><span>Kompleks</span></h1>
+      <p class="hero__lead">Ayolning ichki holati, munosabatlari, moliyaviy qarashlari va shaxsiy rivoji uchun 4 ta bepul demo dars.</p>
+      <div class="hero__actions">
+        <button class="primary-btn primary-btn--hero" type="button" id="heroStartBtn">1-darsni boshlash →</button>
+        <button class="ghost-btn" type="button" id="heroPitchBtn">Kurs tarkibi</button>
+      </div>
+    </div>
+
+    <div class="hero__badge" aria-label="1000+ ayol ishtirok etmoqda">
+      <div class="hero__badge-avatars" aria-hidden="true">
+        <span>👩</span><span>👩</span><span>👩</span>
+      </div>
+      <span>1000+ ayol allaqachon boshladi</span>
+    </div>
+  </section>
+
+  <!-- ── STATUS BAR (sticky) ── -->
+  <div class="status-bar" id="statusBar" aria-label="Demo progress">
+    <div class="status-bar__info">
+      <div class="status-bar__count" id="watchedCount">0 / 4 ko'rildi</div>
+      <div class="status-bar__track">
+        <div class="status-bar__fill" id="pFill"></div>
+      </div>
+    </div>
+    <div class="status-bar__pct" id="pNum" aria-label="Progress foizi">0%</div>
+    <button class="primary-btn status-bar__btn" type="button" id="stickyBuyBtn">Kursga qo'shilish</button>
+  </div>
+
+  <!-- ── PLAYER ── -->
+  <div class="player player--hidden" id="player" aria-label="Dars pleyeri">
+    <div class="player__screen" id="pScreen">
+      <video id="mainVideo" playsinline>
+        <source src="" type="video/mp4" id="mainVideoSrc">
+      </video>
+      <div class="player__empty" id="pPh">
+        <p class="eyebrow">Dars tarkibi</p>
+        <h2 id="pPhTitle">—</h2>
+        <ul class="player__points" id="pPoints"></ul>
+        <p class="microcopy" id="pNoVideo"></p>
+      </div>
+    </div>
+    <div class="player__bar">
+      <div class="player__bar-info">
+        <strong id="pBarName">—</strong>
+        <span id="pBarExpert">Amira Rashidova</span>
+        <p id="pBarDesc" class="player__bar-desc"></p>
+      </div>
+      <button class="secondary-btn secondary-btn--sm" type="button" id="pClose">Keyingi dars →</button>
+    </div>
+  </div>
+
+  <!-- ── PiP ── -->
+  <div class="pip" id="pip" aria-label="Mini pleyer">
+    <video id="pipVideo" controls playsinline></video>
+    <div class="pip__bar">
+      <span id="pipTitle">—</span>
+      <button class="icon-btn" type="button" id="pipClose" aria-label="Mini pleyerni yopish">×</button>
+    </div>
+  </div>
+
+  <!-- ── NEXT HINT ── -->
+  <div class="next-hint" id="nextHint" role="status" aria-live="polite">
+    <div class="next-hint__icon" aria-hidden="true">▶</div>
+    <div class="next-hint__text">
+      <strong id="nextHintTitle">Keyingi dars tayyor</strong>
+      <span id="nextHintSub">Davom etish uchun bosing</span>
+    </div>
+    <button class="secondary-btn secondary-btn--sm" type="button" id="nextHintBtn">Davom →</button>
+  </div>
+
+  <!-- ── AFTER-3 BANNER ── -->
+  <div class="after-banner" id="banner3" role="complementary">
+    <div class="after-banner__text">
+      <p class="eyebrow">Demo deyarli yakunlandi</p>
+      <h2>Siz allaqachon 3 ta darsni ko'rdingiz</h2>
+      <p>To'liq kompleksda amaliy darslar, barcha yo'nalishlar va ekspertlar bilan muloqot ochildi.</p>
+    </div>
+    <button class="primary-btn" type="button" id="bannerBuyBtn">Kursga qo'shilish →</button>
+  </div>
+
+  <!-- ── SECTION HEADER ── -->
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Demo darslar</p>
+      <h2>Ko'rishni boshlang</h2>
+    </div>
+    <span class="section-head__count" id="lessonCount">0 / 4 ko'rildi</span>
+  </div>
+
+  <!-- ── LESSON GRID ── -->
+  <section class="lesson-grid" id="grid" aria-label="Demo darslar"></section>
+
+  <!-- ── PITCH ── -->
+  <section class="pitch" id="pitch" aria-label="To'liq kurs haqida">
+    <div class="pitch__intro">
+      <p class="eyebrow">To'liq kompleks</p>
+      <h2>Balans ichida sizni<br>6 ta yo'nalish kutmoqda</h2>
+      <p>Demo — bu faqat kirish qismi. To'liq kompleks ayolning hayoti, munosabatlari, pulga qarashi va shaxsiy rivojini bir joyda yig'adi.</p>
+    </div>
+
+    <div class="chip-grid">
+      <span>Muvaffaqiyatli ayol</span>
+      <span>Go'zal va sog'lom ayol</span>
+      <span>Sevimli va baxtli ayol</span>
+      <span>Boy ayol</span>
+      <span>Ayol va networking</span>
+      <span>Sayohatga ochilish</span>
+    </div>
+
+    <div class="stats-grid">
+      <div><strong>35+</strong><span>Ekspert</span></div>
+      <div><strong>150+</strong><span>Videodars</span></div>
+      <div><strong>10+</strong><span>Podkast</span></div>
+      <div><strong>6 oy</strong><span>Rivojlanish</span></div>
+    </div>
+
+    <div class="price-card">
+      <div class="price-card__info">
+        <p class="price-card__old">Asl bahosi: 12 000 000 so'm</p>
+        <strong class="price-card__new">2 200 000</strong>
+        <span class="price-card__unit">so'm · hozirgi aksiya narxi</span>
+        <span class="price-card__tag">🎁 1 ta xarid — 6 ta kurs</span>
+        <img src="media/mockup.png" class="price-card__mockup" alt="Kurs tarkibi">
+      </div>
+      <div class="price-card__actions">
+        <button class="primary-btn primary-btn--lg" type="button" id="mainBuyBtn">Kursga qo'shilish →</button>
+        <p class="microcopy">Bo'lib to'lash: <strong>UZUM NASIYA</strong> orqali 3 oyga — <strong>733 000 so'mdan</strong>, foizsiz</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Qizil Pomada · Balans Kompleks · Ayollar rivoji uchun kompleks loyiha · © 2025</p>
+  </footer>
+
+</div><!-- /.app -->
+
+<!-- ── TOAST CONTAINER ── -->
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ── TELEGRAM BUTTON ── -->
+<button class="tg-btn" type="button" id="telegramBtn" aria-label="Telegram orqali maslahat olish">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="white">
+    <path d="M12 0a12 12 0 1 0 0 24A12 12 0 0 0 12 0Zm5.54 8.22-1.86 8.78c-.14.62-.5.77-1.02.48l-2.83-2.09-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.88 5.25-4.74c.23-.2-.05-.31-.35-.11L7.19 13.99l-2.8-.88c-.6-.19-.62-.6.13-.9l10.92-4.21c.5-.18.95.12.9.54 0 0 .17 0 .2-.32z"/>
+  </svg>
+  Telegram orqali maslahat olish
+</button>
+
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script src="app.js" defer></script>
+</body>
+</html>
