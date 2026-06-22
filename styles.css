@@ -888,7 +888,7 @@ ul { list-style: none; }
 }
 .lcard-title {
   font-family: 'Bebas Neue', 'Inter', sans-serif;
-  font-size: clamp(17px, 2vw, 26px);
+  font-size: clamp(26px, 3.2vw, 38px);
   letter-spacing: .05em;
   line-height: .95;
   color: var(--txt);
@@ -1211,7 +1211,7 @@ ul { list-style: none; }
   .topbar__cta { display: none; }
   .status-bar  { flex-wrap: wrap; }
   .status-bar__btn { width: 100%; }
-  .lcard-title { font-size: 15px; }
+  .lcard-title { font-size: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
